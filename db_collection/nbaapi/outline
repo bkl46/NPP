@@ -1,0 +1,14 @@
+#input for PLAYER
+    #team stats  
+
+    #opposing team stats 
+
+    #player season averages
+
+  
+    
+   # player past 2 games against opponent averages 
+    
+    
+    
+    # overall_team_stats.to_csv(f"{team_name}_stats_2023-24.csv", index=False)
