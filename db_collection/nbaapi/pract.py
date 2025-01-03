@@ -116,32 +116,45 @@ def collect_season_data(start_date, end_date, season_id):
                 
                 
                 #add season averages
-                for stat in season_stats.columns:
-                    print(stat)
-                    box_score_data.at[i, f'SEASON_{stat}'] = season_stats.loc[season_stats.index[0],stat]
+                if not season_stats.empty:
+                    for stat in season_stats.columns:
+                        #print(stat)
+                        box_score_data.at[i, f'SEASON_{stat}'] = season_stats.loc[season_stats.index[0],stat]
                 print('add stat passed')
+         
                     
                 #add recent averages
-                for stat in recent_stats.columns:
-                    print(stat)
-                    box_score_data.at[i, f'RECENT_{stat}'] = recent_stats.loc[recent_stats.index[0],stat]
+                if not recent_stats.empty:
+                    for stat in recent_stats.columns:
+                        #print(stat)
+                        box_score_data.at[i, f'RECENT_{stat}'] = recent_stats.loc[recent_stats.index[0],stat]
+                        
                 print('add recent passed')
+        
                     
                 #add team averages
-                for stat in team_stats.columns:
-                    print(stat)
-                    box_score_data.at[i,f'TEAM_{stat}'] = team_stats.loc[team_stats.index[0],stat]
+                if not team_stats.empty:
+                    for stat in team_stats.columns:
+                        #print(stat)
+                        box_score_data.at[i,f'TEAM_{stat}'] = team_stats.loc[team_stats.index[0],stat]
+                        
                 print('add team passed')
+               
                 
                 #add opponent team averages
-                for stat in opponent_team_stats.columns:
-                    box_score_data.at[i,f'OPPONENT_{stat}'] = opponent_team_stats.loc[opponent_team_stats.index[0],stat]
+                if not opponent_team_stats.empty:
+                    for stat in opponent_team_stats.columns:
+                        box_score_data.at[i,f'OPPONENT_{stat}'] = opponent_team_stats.loc[opponent_team_stats.index[0],stat]
+                        
                 print('add opp passed')
+                
                     
                 #add averages against opponent
-                for stat in stats_against_opp.columns:
-                    print(stat)
-                    box_score_data.at[i,f'AGAINT_OPP_{stat}'] = stats_against_opp.loc[stats_against_opp.index[0],stat]
+                if not stats_against_opp.empty:
+                    for stat in stats_against_opp.columns:
+                        #print(stat)
+                        box_score_data.at[i,f'AGAINT_OPP_{stat}'] = stats_against_opp.loc[stats_against_opp.index[0],stat]
+                        
                 print('add against opp passed')    
                 time.sleep(4)
             
@@ -153,6 +166,7 @@ def collect_season_data(start_date, end_date, season_id):
             
             # sleep to avoid rate limiting
             time.sleep(1)
+            print("done game")
             
         #increment day
         current_date += pd.Timedelta(days=1)
@@ -166,8 +180,8 @@ def collect_season_data(start_date, end_date, season_id):
 all_players_df = collect_season_data('2024-3-05','2024-3-05',season_id)
     
  # Save to CSV or process the DataFrame as needed
-all_players_df.to_csv('nba_player_stats_with_full_data_2023_2024.csv', index=False)
-print("Data collection complete. Saved to 'nba_player_stats_with_full_data_2023_2024.csv'.")
+all_players_df.to_csv('nba_player_stats_with_full_data_2023_2024v2.csv', index=False)
+print("Data collection complete. Saved to 'nba_player_stats_with_full_data_2023_2024v2.csv'.")
 
 
 # Main function to collect season data
