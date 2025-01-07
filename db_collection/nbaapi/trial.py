@@ -82,3 +82,4 @@ team_id = 1610612738
 #player_stats = game_log.get_data_frames()[0]
 #player_stats['GAME_DATE'] = pd.to_datetime(player_stats['GAME_DATE'],  errors='coerce')
 #print(player_stats.head())
+print(get_player_season_stats(player_id,season_id).head(1).T)

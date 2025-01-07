@@ -177,11 +177,85 @@ def collect_season_data(start_date, end_date, season_id):
                     
 
 
-all_players_df = collect_season_data('2024-3-05','2024-3-05',season_id)
+df = collect_season_data('2024-3-05','2024-3-05',season_id)
+
+#clean up dataframe
+#TEAM
+df = df.drop(columns=['RECENT_VIDEO_AVAILABLE'])
+df = df.drop(columns=['TEAM_GROUP_SET'])
+df = df.drop(columns=['TEAM_GROUP_VALUE'])
+df = df.drop(columns=['TEAM_SEASON_YEAR'])
+
+df = df.drop(columns=['TEAM_W'])
+df = df.drop(columns=['TEAM_L'])
+
+df['TEAM_MPG'] = df['TEAM_MIN']/df['TEAM_GP']
+df = df.drop(columns=['TEAM_MIN'])
+
+df = df.drop(columns=['TEAM_FGM'])
+df = df.drop(columns=['TEAM_FGA'])
+
+df['TEAM_FG3APG'] = df['TEAM_FG3APG']/df['TEAM_GP']
+df = df.drop(columns=['TEAM_FG3A'])
+df = df.drop(columns = ['TEAM_FG3M'])
+
+df['TEAM_FTPG'] = df['TEAM_FTA']/df['TEAM_GP']
+df = df.drop(columns=['TEAM_FTA'])
+df = df.drop(columns=['TEAM_FTM'])
+
+df['TEAM_OREB'] = df['TEAM_OREB']/df['TEAM_GP']
+df['TEAM_DREB'] = df['TEAM_DREB']/df['TEAM_GP']
+df = df.drop(columns=['TEAM_REB'])
+df['TEAM_AST'] = df['TEAM_AST']/df['TEAM_GP']
+df['TEAM_TOV'] = df['TEAM_TOV']/df['TEAM_GP']
+df['TEAM_STL'] = df['TEAM_STL']/df['TEAM_GP']
+df['TEAM_BLK'] = df['TEAM_BLK']/df['TEAM_GP']
+df['TEAM_BLKA'] = df['TEAM_BLKA']/df['TEAM_GP']
+df['TEAM_PF'] = df['TEAM_PF']/df['TEAM_GP']
+df['TEAM_PFD'] = df['TEAM_PFD']/df['TEAM_GP']
+df['TEAM_PTS'] = df['TEAM_PTS']/df['TEAM_GP']
+df['TEAM_PLUS_MINUS'] = df['TEAM_PLUS_MINUS']/df['TEAM_GP']
+
+df = df.drop(columns=['TEAM_GP_RANK'])
+df = df.drop(columns=['TEAM_W_RANK'])
+df = df.drop(columns=['TEAM_L_RANK'])
+df = df.drop(columns=['TEAM_W_PCT_RANK'])
+df = df.drop(columns=['TEAM_MIN_RANK'])
+df = df.drop(columns=['TEAM_FGM_RANK'])
+df = df.drop(columns=['TEAM_FGA_RANK'])
+df = df.drop(columns=['TEAM_FG_PCT_RANK'])
+df = df.drop(columns=['TEAM_FG3M_RANK'])
+df = df.drop(columns=['TEAM_FG3A_RANK'])
+df = df.drop(columns=['TEAM_FG3_PCT_RANK'])
+df = df.drop(columns=['TEAM_FTM_RANK'])
+df = df.drop(columns=['TEAM_FTA_RANK'])
+df = df.drop(columns=['TEAM_FT_PCT_RANK'])
+df = df.drop(columns=['TEAM_OREB_RANK'])
+df = df.drop(columns=['TEAM_DREB_RANK'])
+df = df.drop(columns=['TEAM_REB_RANK'])
+df = df.drop(columns=['TEAM_AST_RANK'])
+df = df.drop(columns=['TEAM_TOV_RANK'])
+df = df.drop(columns=['TEAM_STL_RANK'])
+df = df.drop(columns=['TEAM_BLK_RANK'])
+df = df.drop(columns=['TEAM_BLKA_RANK'])
+df = df.drop(columns=['TEAM_PF_RANK'])
+df = df.drop(columns=['TEAM_PFD_RANK'])
+df = df.drop(columns=['TEAM_PTS_RANK'])
+df = df.drop(columns=['TEAM_PLUS_MINUS_RANK'])
+
+
+
+
+
+df = df.drop(columns=['AGAINST_OPP_Player_ID'])
+
+
+
     
  # Save to CSV or process the DataFrame as needed
-all_players_df.to_csv('nba_player_stats_with_full_data_2023_2024v2.csv', index=False)
-print("Data collection complete. Saved to 'nba_player_stats_with_full_data_2023_2024v2.csv'.")
+title = 'nba_data23-24v1.csv'
+df.to_csv(title, index=False)
+print("Data collection complete. Saved to " + title)
 
 
 # Main function to collect season data
