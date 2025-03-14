@@ -1,0 +1,15 @@
+import pandas as pd
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from torch.utils.data import DataLoader, TensorDataset
+
+
+df_result = pd.read_csv('OUT.csv')
+
+df_data1 = pd.read_csv('season.csv')
+df_data2 = pd.read_csv('recent.csv')
+
+df_data = pd.concat([df_data1, df_data2], axis=0)
